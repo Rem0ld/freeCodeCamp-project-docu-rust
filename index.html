@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentation about Rust">
+  <meta name="author" content="Pierre Lovergne">
+  <link rel="icon" type="image/png"
+    href="https://cdn.glitch.com/e431f8fe-6864-4d58-a472-36bc6659a290%2FRust_programming_language_black_logo.svg?v=1584717534096" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <title>Documentation about Rust</title>
+
+</head>
+
+<body class="container">
+  <nav id="navbar" class="navbar">
+    <header>
+      <h1 class="navbar__title">The Rust programming language</h1>
+      <hr>
+    </header>
+    <div class="navbar__content">
+      <ol>
+        <li><a class="nav-link" href="#introduction">Introduction</a></li>
+        <li><a class="nav-link" href="#installation">Installation</a></li>
+        <li><a class="nav-link" href="#hello,_world!">Hello, World!</a></li>
+        <li><a class="nav-link" href="#hello,_cargo!">Hello, Cargo!</a></li>
+        <li><a class="nav-link" href="#common_programming_concepts">Common Programming Concepts</a></li>
+        <li><a class="nav-link" href="#reference">Reference</a></li>
+      </ol>
+      <hr>
+    </div>
+    <div class="navbar__theme" onclick="lightTheme()">
+      <p class="navbar__theme--para">Change theme</p>
+      <img id="light" class="navbar__theme--img"
+        src="https://cdn.glitch.com/e431f8fe-6864-4d58-a472-36bc6659a290%2Ftheme2.svg?v=1584717534413" width="32px"
+        height="32px">
+    </div>
+  </nav>
+  <main id="main-doc">
+    <section id="introduction" class="main-section main-section__1">
+      <header>
+        <h2 class="main-section__title main-section__title--h2">Introduction</h2>
+      </header>
+      <div class="main-section__content">
+        <blockquote>
+          <p>Note : I am realising this documentation for academic purpose, therefore it is incomplete.
+            However, the official documentation is very well done. In fact this is my main source of
+            information and inspiration.
+            <br>See below <a href="#reference">this page</a> for the official link.
+          </p>
+        </blockquote>
+        <p>Welcome to <em>The Rust Programming Language</em>, an introductory book about Rust. The Rust
+          programming language helps you write faster,
+          more reliable software. High-level ergonomics and low-level control are often at odds in programming
+          language design; Rust challenges that conflict.
+          Through balancing powerful technical capacity and a great developer experience,
+          Rust gives you the option to control low-level details (such as memory usage)
+          without all the hassle traditionally associated with such control.
+        </p>
+        <h2 class="main-section__title main-section__title--h2">Who Rust Is For</h2>
+        <p>Rust is ideal for many people for a variety of reasons. Let’s look at a few of the most important
+          groups.</p>
+        <h3 class="main-section__title main-section__title--h3">Teams of Developers</h3>
+        <p>Rust brings contemporary developer tools to the systems programming world:</p>
+        <ul>
+          <li>Cargo, the included dependency manager and build tool, makes adding, compiling, and managing
+            dependencies painless and consistent across the Rust ecosystem.</li>
+          <li>Rustfmt ensures a consistent coding style across developers.</li>
+          <li>The Rust Language Server powers Integrated Development Environment (IDE) integration for code
+            completion and inline error messages.</li>
+        </ul>
+        <p>By using these and other tools in the Rust ecosystem, developers can be productive while writing
+          systems-level code.</p>
+        <h3 class="main-section__title main-section__title--h3">Students</h3>
+        <p>Rust is for students and those who are interested in learning about systems concepts.
+          Using Rust, many people have learned about topics like operating systems development.
+          The community is very welcoming and happy to answer student questions.
+          Through efforts such as this book, the Rust teams want to make systems concepts more accessible to
+          more people,
+          especially those new to programming.
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Companies</h3>
+        <p>Hundreds of companies, large and small, use Rust in production for a variety of tasks.
+          Those tasks include command line tools, web services, DevOps tooling, embedded devices,
+          audio and video analysis and transcoding, cryptocurrencies, bioinformatics, search engines, Internet
+          of Things applications,
+          machine learning, and even major parts of the Firefox web browser.
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Open Source Developers</h3>
+        <p>Rust is for people who want to build the Rust programming language, community, developer tools, and
+          libraries.
+          We’d love to have you contribute to the Rust language.
+        </p>
+      </div>
+    </section>
+    <section id="installation" class="main-section main-section__2">
+      <header>
+        <h2 class="main-section__title main-section__title--h2">Installation</h2>
+      </header>
+      <div class="main-section__content">
+        <p>The first step is to install Rust. We’ll download Rust through <code class="hlcode">rustup</code>,
+          a command line tool for managing Rust versions and associated tools.
+          You’ll need an internet connection for the download.
+        </p>
+        <blockquote>
+          <p>Note: If you prefer not to use <code class="hlcode">rustup</code> for some reason,
+            please see the <a href="https://www.rust-lang.org/tools/install" target="_blank">Rust
+              installation page</a> for other options.
+          </p>
+        </blockquote>
+        <p>The following steps install the latest stable version of the Rust compiler.
+          Rust’s stability guarantees ensure that all the examples in the book that compile will continue to
+          compile with newer Rust versions.
+          The output might differ slightly between versions, because Rust often improves error messages and
+          warnings. In other words, any newer,
+          stable version of Rust you install using these steps should work as expected with the content of
+          this documentation.
+        </p>
+        <blockquote>
+          <h3>Command Line Notation</h3>
+          <p>In this chapter and throughout the book, we’ll show some commands used in the terminal.
+            Lines that you should enter in a terminal all start with <code class="hlcode">$</code>.
+            You don’t need to type in the <code class="hlcode">$</code> character; it indicates the start of
+            each command.
+            Lines that don’t start with <code class="hlcode">$</code> typically show the output of the
+            previous command.
+            Additionally, PowerShell-specific examples will use <code class="hlcode">&gt</code> rather than
+            <code class="hlcode">$</code>.
+          </p>
+        </blockquote>
+        <h3 class="main-section__title main-section__title--h3">Installing <code class="hlcode">rustup</code> on
+          Linux or macOS</h3>
+        <p>If you’re using Linux or macOS, open a terminal and enter the following command: </p>
+        <pre class="bash-code">$ curl https://sh.rustup.rs -sSf  |  sh</pre>
+        <p>The command downloads a script and starts the installation of the <code class="hlcode">rustup</code> tool,
+          which installs the latest stable version of Rust.
+          You might be prompted for your password. If the install is successful, the following line will appear:
+        </p>
+        <pre class="bash-code">Rust is installed now. Great!</pre>
+        <p>If you prefer, feel free to download the script and inspect it before running it.<br> </p>
+        <p>The installation script automatically adds Rust to your system PATH after your next login.
+          If you want to start using Rust right away instead of restarting your terminal,
+          run the following command in your shell to add Rust to your system PATH manually:
+        </p>
+        <pre class="bash-code">$ source $HOME/.cargo/env</pre>
+        <p>Alternatively, you can add the following line to your ~/.bash_profile:</p>
+        <pre class="bash-code">$ export PATH="$HOME/.cargo/bin:$PATH"</pre>
+        <p>Additionally, you’ll need a linker of some kind. It’s likely one is already installed,
+          but when you try to compile a Rust program and get errors indicating that a linker could not execute,
+          that means a linker isn’t installed on your system and you’ll need to install one manually.
+          C compilers usually come with the correct linker. Check your platform’s documentation for how to install a C
+          compiler.
+          Also, some common Rust packages depend on C code and will need a C compiler. Therefore, it might be worth
+          installing one now.
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Troubleshooting</h3>
+        <p>To check whether you have Rust installed correctly, open a shell and enter this line:</p>
+        <pre class="bash-code">$ rustc --version</pre>
+        <p>You should see the version number, commit hash,
+          and commit date for the latest stable version that has been released in the following format:
+        </p>
+        <pre class="bash-code">rustc x.y.z (abcabcabc yyyy-mm-dd)</pre>
+        <p>If you see this information, you have installed Rust successfully! If you don’t see this information and
+          you’re on Windows,
+          check that Rust is in your <code class="hlcode">%PATH%</code> system variable. If that’s all correct and Rust
+          still isn’t working,
+          there are a number of places you can get help. The easiest is the #beginners channel on
+          <a href="https://discord.gg/rust-lang">the official Rust Discord</a>.
+          There, you can chat with other Rustaceans (a silly nickname we call ourselves) who can help you out.
+          Other great resources include <a href="https://users.rust-lang.org/">the Users forum</a> and
+          <a href="http://stackoverflow.com/questions/tagged/rust">Stack Overflow</a>.
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Local Documentation</h3>
+        <p>The installation of Rust also includes a copy of the documentation locally, so you can read it offline.
+          Run rustup doc to open the local documentation in your browser.
+        </p>
+        <p>Any time a type or function is provided by the standard library and you’re not sure what it does or how to
+          use it,
+          use the application programming interface (API) documentation to find out!
+        </p>
+      </div>
+    </section>
+    <section id="hello,_world!" class="main-section main-section__3">
+      <header>
+        <h2 class="main-section__title main-section__title--h2">Hello, World!</h2>
+      </header>
+      <div class="main-section__content">
+        <p>Now that you’ve installed Rust, let’s write your first Rust program.
+          It’s traditional when learning a new language to write a little program that prints the text
+          <code class="hlcode">Hello, world!</code> to the screen, so we’ll do the same here!
+        </p>
+        <blockquote>
+          <p>Note: This book assumes basic familiarity with the command line.
+            Rust makes no specific demands about your editing or tooling or where your code lives,
+            so if you prefer to use an integrated development environment (IDE) instead of the command line,
+            feel free to use your favorite IDE. Many IDEs now have some degree of Rust support; check the IDE’s
+            documentation for details.
+            Recently, the Rust team has been focusing on enabling great IDE support, and progress has been made rapidly
+            on that front!
+          </p>
+        </blockquote>
+        <h3 class="main-section__title main-section__title--h3">Creating a Project Directory</h3>
+        <p>You’ll start by making a directory to store your Rust code. It doesn’t matter to Rust where your code lives,
+          but for the exercises and projects in this book, we suggest making a projects directory in your home directory
+          and keeping all your projects there.
+        </p>
+        <p>Open a terminal and enter the following commands to make a projects directory and a directory for the “Hello,
+          world!”
+          project within the projects directory.
+        </p>
+        <ul>
+          <li>For Linux, macOS, and PowerShell on Windows, enter this:</li>
+          <pre class="bash-code">
+$ mkdir ~/projects
+$ cd ~/projects
+$ mkdir hello_world
+$ cd hello_world
+</pre>
+          <li>For Windows CMD, enter this:</li>
+          <pre class="bash-code">
+&gt mkdir "%USERPROFILE%\projects"
+&gt cd /d "%USERPROFILE%\projects"
+&gt mkdir hello_world
+&gt cd hello_world
+</pre>
+        </ul>
+        <h3 class="main-section__title main-section__title--h3">Writing and Running a Rust Program</h3>
+        <p>Next, make a new source file and call it <span class="italic">main.rs</span>.
+          Rust files always end with the <span class="italic">.rs</span> extension.
+          If you’re using more than one word in your filename, use an underscore to separate them.
+          For example, use <span class="italic">hello_world.rs</span> rather than <span
+            class="italic">helloworld.rs</span>.
+        </p>
+        <p>Now open the main.rs file you just created and enter the code in Listing 1-1.</p>
+        <p>Filename: <span class="italic">main.rs</span></p>
+        <pre class="hlcode"><span class="hlcode--function">fn</span> <span class="hlcode--def">main</span>() {
+                    <span class="hlcode--def">println!</span>(<span class="hlcode--content">"Hello, world!"</span>);
+                }</pre>
+        <p>Listing 1-1: A program that prints <code class="hlcode">Hello, world!</code></p>
+        <p>Save the file and go back to your terminal window. On Linux or macOS, enter the following commands to compile
+          and run the file:</p>
+        <pre class="bash-code">$ rustc main.rs
+$ ./main
+Hello, world!</pre>
+        <p>On Windows, enter the command <code class="hlcode">.\main.exe</code> instead of <code
+            class="hlcode">./main:</code></p>
+        <pre class="bash-code">&gt rustc main.rs
+&gt .\main.exe
+Hello, world!</pre>
+        <p>Regardless of your operating system, the string <code class="hlcode">Hello, world!</code> should print to the
+          terminal. If you don’t see this output,
+          refer back to the <a
+            href="https://doc.rust-lang.org/book/ch01-01-installation.html#troubleshooting">“Troubleshooting”</a> part
+          of the Installation section for ways to get help.
+        </p>
+        <p>If <code class="hlcode">Hello, world!</code> did print, congratulations! You’ve officially written a Rust
+          program.
+          That makes you a Rust programmer—welcome!
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Anatomy of a Rust Program</h3>
+        <p>Let’s review in detail what just happened in your “Hello, world!” program. Here’s the first piece of the
+          puzzle:</p>
+        <pre class="hlcode"><span class="hlcode--function">fn</span> <span class="hlcode--def">main</span>() {
+
+                }</pre>
+        <p>These lines define a function in Rust. The <code class="hlcode">main</code> function is special:
+          it is always the first code that runs in every executable Rust program.
+          The first line declares a function named <code class="hlcode">main</code> that has no parameters and returns
+          nothing. If there were parameters,
+          they would go inside the parentheses, <code class="hlcode">()</code>.
+        </p>
+        <p>Also, note that the function body is wrapped in curly brackets, <code class="hlcode">{}</code>.
+          Rust requires these around all function bodies.
+          It’s good style to place the opening curly bracket on the same line as the function declaration, adding one
+          space in between.
+        </p>
+        <p>At the time of this writing, an automatic formatter tool called <code class="hlcode">rustfmt</code> is under
+          development.
+          If you want to stick to a standard style across Rust projects,
+          <code class="hlcode">rustfmt</code> will format your code in a particular style.
+          The Rust team plans to eventually include this tool with the standard Rust distribution, like <code
+            class="hlcode">rustc</code>.
+          So depending on when you read this book, it might already be installed on your computer!
+          Check the online documentation for more details.
+        </p>
+        <p>Inside the <code class="hlcode">main</code> function is the following code:</p>
+        <pre class="hlcode">
+
+                    <span class="hlcode--def">println!</span>(<span class="hlcode--content">"Hello, world!"</span>);</pre>
+        <p>This line does all the work in this little program: it prints text to the screen.
+          There are four important details to notice here. First, Rust style is to indent with four spaces, not a tab.
+        </p>
+        <p>Second, <code class="hlcode">println!</code> calls a Rust macro. If it called a function instead,
+          it would be entered as <code class="hlcode">println</code> (without the <code class="hlcode">!</code>).
+          We’ll discuss Rust macros in more detail in Chapter 19.
+          For now, you just need to know that using a <code class="hlcode">!</code> means that you’re calling a macro
+          instead of a normal function.
+        </p>
+        <p>Third, you see the <code class="hlcode">"Hello, world!"</code> string. We pass this string as an argument to
+          <code class="hlcode">println!</code>,
+          and the string is printed to the screen.
+        </p>
+        <p>Fourth, we end the line with a semicolon (<code class="hlcode">;</code>), which indicates that this
+          expression is over and the next one is ready to begin.
+          Most lines of Rust code end with a semicolon.
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Compiling and Running Are Separate Steps</h3>
+        <p>You’ve just run a newly created program, so let’s examine each step in the process.</p>
+        <p>Before running a Rust program, you must compile it using the Rust compiler by entering the <code
+            class="hlcode">rustc</code>
+          command and passing it the name of your source file, like this:
+        </p>
+        <pre class="bash-code">$ rustc main.rs</pre>
+        <p>If you have a C or C++ background, you’ll notice that this is similar to <code class="hlcode">gcc</code> or
+          <code class="hlcode">clang</code>.
+          After compiling successfully, Rust outputs a binary executable.
+        </p>
+        <p>On Linux, macOS, and PowerShell on Windows, you can see the executable by entering the <code
+            class="hlcode">ls</code> command in your shell.
+          On Linux and macOS, you’ll see two files. With PowerShell on Windows, you’ll see the same three files that you
+          would see using CMD.
+        </p>
+        <pre class="bash-code">$ ls
+main  main.rs</pre>
+        <p>With CMD on Windows, you would enter the following:</p>
+        <pre class="bash-code">&gt dir /B %= the /B option says to only show the file names =%
+main.exe
+main.pdb
+main.rs
+</pre>
+        <p>This shows the source code file with the .rs extension, the executable file (main.exe on Windows,
+          but main on all other platforms), and, when using Windows, a file containing debugging information with the
+          .pdb extension.
+          From here, you run the main or main.exe file, like this:
+        </p>
+        <pre class="bash-code">$ ./main # or .\main.exe on Windows</pre>
+        <p>If main.rs was your “Hello, world!” program, this line would print <code class="hlcode">Hello, world!</code>
+          to your terminal.</p>
+        <p>If you’re more familiar with a dynamic language, such as Ruby, Python, or JavaScript,
+          you might not be used to compiling and running a program as separate steps.
+          Rust is an ahead-of-time compiled language, meaning you can compile a program and give the executable to
+          someone else,
+          and they can run it even without having Rust installed. If you give someone a <span class="italic">.rb</span>,
+          <span class="italic">.py</span>, or <span class="italic">.js</span> file,
+          they need to have a Ruby, Python, or JavaScript implementation installed (respectively). But in those
+          languages,
+          you only need one command to compile and run your program. Everything is a trade-off in language design.
+        </p>
+        <p>Just compiling with <code class="hlcode">rustc</code> is fine for simple programs, but as your project grows,
+          you’ll want to manage all the options and make it easy to share your code. Next,
+          we’ll introduce you to the Cargo tool, which will help you write real-world Rust programs.
+        </p>
+      </div>
+    </section>
+    <section id="hello,_cargo!" class="main-section main-section__4">
+      <header>
+        <h2 class="main-section__title main-section__title--h2">Hello, Cargo!</h2>
+      </header>
+      <div class="main-section__content">
+        <p>Cargo is Rust’s build system and package manager.
+          Most Rustaceans use this tool to manage their Rust projects because Cargo handles a lot of tasks for you,
+          such as building your code, downloading the libraries your code depends on, and building those libraries.
+          (We call libraries your code needs <span class="italic">dependencies</span>.)
+        </p>
+        <p>The simplest Rust programs, like the one we’ve written so far, don’t have any dependencies.
+          So if we had built the “Hello, world!” project with Cargo, it would only use the part of Cargo that handles
+          building your code.
+          As you write more complex Rust programs, you’ll add dependencies, and if you start a project using Cargo,
+          adding dependencies will be much easier to do.
+        </p>
+        <p>Because the vast majority of Rust projects use Cargo, the rest of this book assumes that you’re using Cargo
+          too.
+          Cargo comes installed with Rust if you used the official installers discussed in the
+          <a href="#installation">“Installation”</a> section. If you installed Rust through some other means,
+          check whether Cargo is installed by entering the following into your terminal:
+        </p>
+        <pre class="bash-code">$  cargo  --version</pre>
+        <p>If you see a version number, you have it! If you see an error, such as <code class="hlcode">command not
+            found</code>,
+          look at the documentation for your method of installation to determine how to install Cargo separately.
+        </p>
+        <h3 class="main-section__title main-section__title--h3">Creating a Project with Cargo</h3>
+        <p>Let’s create a new project using Cargo and look at how it differs from our original “Hello, world!” project.
+          Navigate back to your projects directory (or wherever you decided to store your code).
+          Then, on any operating system, run the following:
+        </p>
+        <pre class="bash-code">
+$ cargo new hello_cargo
+$ cd hello_cargo</pre>
+        <p>The first command creates a new directory called <span class="italic">hello_cargo</span>.
+          We’ve named our project <span class="italic">hello_cargo</span>,
+          and Cargo creates its files in a directory of the same name.
+        </p>
+        <p>Go into the <span class="italic">hello_cargo</span> directory and list the files.
+          You’ll see that Cargo has generated two files and one directory for us:
+          a <span class="italic">Cargo.toml</span> file and a <span class="italic">src</span> directory with a <span
+            class="italic">main.rs</span> file inside.
+          It has also initialized a new Git repository along with a <span class="italic">.gitignore file</span>.
+        </p>
+        <blockquote>
+          <p>Note: Git is a common version control system. You can change <code class="hlcode">cargo new</code>
+            to use a different version control system or no version control system by using the
+            <code class="hlcode">--vcs</code> flag. Run <code class="hlcode">cargo new</code>
+            <code class="hlcode">--help</code> to see the available options.
+          </p>
+        </blockquote>
+        <p>Open <span class="italic">Cargo.toml</span> in your text editor of choice.
+          It should look similar to the code in Listing 1-2.
+        </p>
+        <p>Filename: Cargo.toml</p>
+        <pre class="hlcode">
+<span class="hlcode--def">[package]</span>
+<span class="hlcode--function">name</span> = <span class="hlcode--content">"hello_cargo"</span>
+<span class="hlcode--function">version</span> = <span class="hlcode--content">"0.1.0"</span>
+<span class="hlcode--function">authors</span> = [<span class="hlcode--content">"Your Name &ltyou@example.com&gt"</span>]
+<span class="hlcode--function">edition</span> = <span class="hlcode--content">"2018"</span>
+
+<span class="hlcode--def">[dependencies]</span></pre>
+        <p>Listing 1-2: Contents of <span class="italic">Cargo.toml</span> generated by <code class="hlcode">cargo
+            new</code></p>
+        <p>This file is in the <a href="https://github.com/toml-lang/toml" target="_blank">TOML</a>
+          (Tom’s Obvious, Minimal Language) format, which is Cargo’s configuration format.
+        </p>
+        <p>The first line, <code class="hlcode">[package]</code>, is a section heading that indicates that the following
+          statements are configuring a package.
+          As we add more information to this file, we’ll add other sections.
+        </p>
+        <p>The next four lines set the configuration information Cargo needs to compile your program: the name, the
+          version,
+          who wrote it, and the edition of Rust to use. Cargo gets your name and email information from your
+          environment,
+          so if that information is not correct, fix the information now and then save the file.
+          We’ll talk about the <code class="hlcode">edition</code> key in Appendix E.
+        </p>
+        <p>The last line, <code class="hlcode">[dependencies]</code>, is the start of a section for you to list any of
+          your project’s dependencies.
+          In Rust, packages of code are referred to as crates. We won’t need any other crates for this project,
+          but we will in the first project in Chapter 2, so we’ll use this dependencies section then.
+        </p>
+        <p>Now open <span class="italic">src/main.rs</span> and take a look:</p>
+        <p>Filename: src/main.rs</p>
+        <pre class="hlcode">
+<span class="hlcode--function">fn</span> <span class="hlcode--def">main</span>() {
+        <span class="hlcode--def">println!</span>(<span class="hlcode--content">"Hello, world!"</span>);
+}</pre>
+        <p>Cargo has generated a “Hello, world!” program for you, just like the one we wrote in Listing 1-1! So far,
+          the differences between our previous project and the project Cargo generates are that Cargo placed the code in
+          the src directory,
+          and we have a <span class="italic">Cargo.toml</span> configuration file in the top directory.
+        </p>
+        <p>Cargo expects your source files to live inside the src directory.
+          The top-level project directory is just for README files, license information, configuration files,
+          and anything else not related to your code. Using Cargo helps you organize your projects.
+          There’s a place for everything, and everything is in its place.
+        </p>
+        <p>If you started a project that doesn’t use Cargo, as we did with the “Hello, world!” project,
+          you can convert it to a project that does use Cargo.
+          Move the project code into the src directory and create an appropriate <span class="italic">Cargo.toml</span>
+          file.
+        </p>
+      </div>
+    </section>
+    <section id="common_programming_concepts" class="main-section main-section__5">
+      <header>
+        <h2 class="main-section__title main-section__title--h2">Common Programming Concepts</h2>
+      </header>
+      <div class="main-section__content">
+        <p>
+          This chapter covers concepts that appear in almost every programming language and how they work in Rust.
+          Many programming languages have much in common at their core.
+          None of the concepts presented in this chapter are unique to Rust,
+          but we’ll discuss them in the context of Rust and explain the conventions around using these concepts.
+        </p>
+        <p>Specifically, you’ll learn about variables, basic types, functions, comments, and control flow.
+          These foundations will be in every Rust program, and learning them early will give you a strong core to start
+          from.
+        </p>
+        <blockquote>
+          <h3>Keywords</h3>
+          <p>The Rust language has a set of <span class="italic">keywords</span> that are reserved for use by the
+            language only, much as in other languages.
+            Keep in mind that you cannot use these words as names of variables or functions.
+            Most of the keywords have special meanings, and you’ll be using them to do various tasks in your Rust
+            programs;
+            a few have no current functionality associated with them but have been reserved for functionality that might
+            be added to Rust in the future.
+            You can find a list of the keywords in Appendix A.
+          </p>
+        </blockquote>
+
+      </div>
+    </section>
+    <section id="reference" class="main-section main-section__6">
+      <header>
+        <h2 class="main-section__title main-section__title--h2">Reference</h2>
+      </header>
+      <div class="main-section__content">
+        <p>This is the end of this documentation, for more information follow : <a
+            href="https://doc.rust-lang.org/book/title-page.html" target="_blank">The Rust Programming Language</a></p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>

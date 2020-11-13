@@ -1,0 +1,281 @@
+/* FONT */
+code,
+pre .bash-code,
+pre {
+  padding: 1px 2px;
+  border-radius: 2px;
+  font-family: "Source Code Pro", "Ubuntu", monospace, sans-serif;
+  font-weight: 400;
+  border: 1px solid var(--bash-bg-color);
+  background-color: var(--bash-bg-color);
+}
+
+/* COLORS */
+:root {
+  --main-font-color: #f6f6ee;
+  --main-bg-color: #29293d;
+  --navbar-bg-color: rgb(61, 61, 67);
+  --blockquote-bg-color: rgba(23, 23, 34, 0.795);
+  --highlight-bg-color: rgb(61, 61, 67);
+  --bash-bg-color: rgb(61, 61, 67);
+  --bash-font-color: rgb(246, 246, 238);
+  --color-logo: invert(98%) sepia(67%) saturate(230%) hue-rotate(32deg)
+    brightness(110%) contrast(93%);
+}
+
+.light {
+  --main-font-color: rgb(41, 41, 61);
+  --main-bg-color: rgb(202, 202, 202);
+  --navbar-bg-color: rgb(167, 167, 167);
+  --blockquote-bg-color: rgb(165, 164, 164);
+  --highlight-bg-color: rgb(41, 41, 61);
+  --bash-bg-color: rgb(105, 103, 103);
+  --color-logo: invert(11%) sepia(5%) saturate(5025%) hue-rotate(202deg)
+    brightness(100%) contrast(86%);
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  background-color: var(--main-bg-color);
+}
+
+.navbar {
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+  background-color: var(--navbar-bg-color);
+  color: var(--main-font-color);
+}
+.navbar__title {
+  margin-top: 0px;
+  margin-left: 13px;
+  padding-top: 15px;
+  font-size: 1.3em;
+  color: #a26202;
+}
+.navbar__theme {
+  display: block;
+  width: 100%;
+  position: relative;
+  bottom: 5px;
+  padding-left: 15px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.navbar__theme--para {
+  display: inline-block;
+}
+.navbar__theme--img {
+  position: relative;
+  top: 6px;
+  right: -5px;
+  filter: var(--color-logo);
+}
+.navbar ol {
+  padding-left: 0px;
+}
+.navbar li {
+  list-style-type: none;
+}
+.navbar a {
+  display: block;
+  padding: 15px 13px;
+  font-size: 1em;
+  text-decoration: none;
+  color: var(--main-font-color);
+}
+
+.main-section {
+  width: 92%;
+  padding-left: 25%;
+  color: var(--main-font-color);
+  line-height: 25px;
+}
+.main-section blockquote {
+  padding: 5px 0px 5px 15px;
+  background-color: var(--blockquote-bg-color);
+}
+.main-section a {
+  color: #3131f7;
+}
+.main-section .italic {
+  font-style: italic;
+}
+.main-section__title--h2 {
+  margin: 0;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  text-align: center;
+}
+.main-section__title--h3 {
+  text-align: left;
+}
+.main-section__3 li {
+  list-style-type: none;
+}
+
+pre {
+  color: var(--bash-font-color);
+  margin-bottom: 25px;
+  line-height: 28px;
+}
+pre .hlcode--function {
+  color: #d07e03;
+}
+pre .hlcode--content {
+  color: #3cdb0b;
+}
+pre .hlcode--def {
+  color: #ffc038;
+}
+pre .bash-code {
+  color: var(--bash-bg-color);
+}
+
+code {
+  color: #e78c03;
+}
+
+/*-----DESKTOP-------------
+-------------------
+-------------
+---------
+-----
+---
+*/
+@media only screen and (min-width: 992px) {
+  .navbar__theme:hover {
+    background-color: #a26202;
+  }
+  .navbar li:hover {
+    background-color: #e78c03;
+  }
+}
+/*-----TABLET-------------
+-------------------
+-------------
+---------
+-----
+---
+*/
+@media only screen and (max-width: 991.98px) {
+  .navbar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+  }
+  .navbar hr {
+    display: none;
+  }
+  .navbar header {
+    width: 40%;
+  }
+  .navbar__title {
+    font-size: 1.1em;
+  }
+  .navbar__content {
+    width: 30%;
+    overflow: scroll;
+  }
+  .navbar__theme {
+    width: 30%;
+    margin: 0px;
+  }
+  .navbar__theme:active {
+    background-color: #a26202;
+  }
+  .navbar__theme li:active {
+    background-color: #e78c03;
+  }
+  .navbar__theme--para {
+    margin: 2px 8px 0px 20%;
+  }
+  .navbar__theme--img {
+    margin-left: 40%;
+  }
+
+  .main-section {
+    margin-left: 4%;
+    padding-left: 0px;
+    padding-top: 100px;
+  }
+  .main-section pre {
+    margin-right: 6%;
+  }
+
+  blockquote > p {
+    width: 97%;
+  }
+}
+/*-----SMARTPHONES-------------
+-------------------
+-------------
+---------
+-----
+---
+*/
+@media only screen and (max-width: 767.98px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 205px;
+    overflow: scroll;
+  }
+  .navbar header {
+    width: 100%;
+  }
+  .navbar__title {
+    text-align: center;
+  }
+  .navbar__content {
+    width: 100%;
+    max-height: 100px;
+    text-align: center;
+  }
+  .navbar__theme {
+    width: 100%;
+    padding-left: 55%;
+  }
+  .navbar__theme--para {
+    margin-left: 0px;
+  }
+  .navbar__theme--img {
+    margin-left: 0px;
+  }
+
+  .main-section {
+    padding-top: 200px;
+  }
+  .main-section__2 {
+    margin-top: -160px;
+  }
+  .main-section__3 {
+    margin-top: -160px;
+  }
+  .main-section__4 {
+    margin-top: -160px;
+  }
+  .main-section__5 {
+    margin-top: -160px;
+  }
+  .main-section__6 {
+    margin-top: -160px;
+  }
+  .main-section pre {
+    overflow: auto;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,351 @@
+@use "sass:color";
+/* FONT */
+$main-font-family: 'Poppins',
+sans-serif;
+$code-font-family: 'Ubuntu',
+sans-serif;
+
+%highlight {
+  padding: 1px 2px;
+  border-radius: 2px;
+  font-family: $code-font-family;
+  font-weight: 400;
+  border: 1px solid var(--bash-bg-color);
+  background-color: var(--bash-bg-color);
+}
+
+@mixin code-colors($font-color) {
+  color: $font-color;
+}
+
+/* COLORS */
+//Dark theme
+$highlight-code: #e78c03;
+$def-code-color: rgb(255, 176, 6);
+$content-code-color: rgb(60, 219, 11);
+
+:root {
+  --main-font-color: #f6f6ee;
+  --main-bg-color: #29293d;
+  --navbar-bg-color: rgb(61, 61, 67);
+  --blockquote-bg-color: rgba(23, 23, 34, 0.795);
+  --highlight-bg-color: rgb(61, 61, 67);
+  --bash-bg-color: rgb(61, 61, 67);
+  --bash-font-color: rgb(246, 246, 238);
+  --color-logo: invert(98%) sepia(67%) saturate(230%) hue-rotate(32deg) brightness(110%) contrast(93%);
+
+}
+
+.light {
+  // Light theme
+  --main-font-color: rgb(41, 41, 61);
+  --main-bg-color: rgb(202, 202, 202);
+  --navbar-bg-color: rgb(167, 167, 167);
+  --blockquote-bg-color: rgb(165, 164, 164);
+  --highlight-bg-color: rgb(41, 41, 61);
+  --bash-bg-color: rgb(105, 103, 103);
+  --color-logo: invert(11%) sepia(5%) saturate(5025%) hue-rotate(202deg) brightness(100%) contrast(86%);
+}
+
+* {
+  font-family: $main-font-family;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  background-color: var(--main-bg-color);
+}
+
+.navbar {
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+  background-color: var(--navbar-bg-color);
+  color: var(--main-font-color);
+
+  &__title {
+    margin-top: 0px;
+    margin-left: 13px;
+    padding-top: 15px;
+    font-size: 1.3em;
+    color: color.scale($highlight-code, $lightness: -30%);
+    ;
+  }
+
+  &__theme {
+    display: block;
+    position: relative;
+    padding-left: 15px;
+    font-size: .9em;
+    cursor: pointer;
+
+    &--para {
+      display: inline-block;
+    }
+
+    &--img {
+      position: relative;
+      top: 6px;
+      right: -5px;
+      filter: var(--color-logo);
+    }
+  }
+
+  ol {
+    padding-left: 0px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    display: block;
+    padding: 15px 13px;
+    font-size: 1em;
+    text-decoration: none;
+    color: var(--main-font-color);
+  }
+}
+
+.main-section {
+  width: 92%;
+  padding-left: 25%;
+  color: var(--main-font-color);
+  line-height: 25px;
+
+  blockquote {
+    padding: 5px 0px 5px 15px;
+    background-color: var(--blockquote-bg-color);
+  }
+
+  a {
+    color: rgb(49, 49, 247);
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  &__title {
+    &--h2 {
+      margin: 0;
+      margin-bottom: 40px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    &--h3 {
+      text-align: left;
+    }
+  }
+
+  &__3 {
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+pre {
+  @extend %highlight;
+  @include code-colors(var(--bash-font-color));
+  margin-bottom: 25px;
+  line-height: 28px;
+
+  .hlcode {
+    &--function {
+      @include code-colors(color.scale($highlight-code, $lightness: -10%));
+    }
+
+    &--content {
+      @include code-colors($content-code-color);
+    }
+
+    &--def {
+      @include code-colors(color.scale($def-code-color, $lightness: 20%));
+    }
+  }
+
+  .bash-code {
+    @extend %highlight;
+    @include code-colors(var(--bash-bg-color));
+  }
+}
+
+code {
+  @extend %highlight;
+  @include code-colors($highlight-code);
+}
+
+/*-----DESKTOP-------------
+-------------------
+-------------
+---------
+-----
+---
+*/
+@media only screen and (min-width: 992px) {
+  .navbar {
+    &__theme {
+      &:hover {
+        background-color: color.scale($highlight-code, $lightness: -30%);
+      }
+    }
+
+    li {
+      &:hover {
+        background-color: $highlight-code;
+      }
+    }
+  }
+}
+
+/*-----TABLET-------------
+-------------------
+-------------
+---------
+-----
+---
+*/
+@media only screen and (max-width: 991.98px) {
+  .navbar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+
+    hr {
+      display: none;
+    }
+
+    header {
+      width: 40%;
+    }
+
+    &__title {
+      font-size: 1.1em;
+    }
+
+    &__content {
+      width: 30%;
+      overflow: scroll;
+    }
+
+    &__theme {
+      width: 30%;
+      margin: 0px;
+
+      &:active {
+        background-color: color.scale($highlight-code, $lightness: -30%);
+      }
+
+      li {
+        &:active {
+          background-color: $highlight-code;
+        }
+      }
+
+      &--para {
+        margin: 2px 8px 0px 20%;
+      }
+
+      &--img {
+        margin-left: 40%;
+      }
+    }
+  }
+
+  .main-section {
+    margin-left: 4%;
+    padding-left: 0px;
+    padding-top: 100px;
+
+    pre {
+      margin-right: 6%;
+    }
+  }
+
+  blockquote>p {
+    width: 97%;
+  }
+}
+
+/*-----SMARTPHONES-------------
+-------------------
+-------------
+---------
+-----
+---
+*/
+@media only screen and (max-width: 767.98px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 205px;
+    overflow: scroll;
+
+    header {
+      width: 100%;
+    }
+
+    &__title {
+      text-align: center;
+    }
+
+    &__content {
+      width: 100%;
+      max-height: 100px;
+      text-align: center;
+    }
+
+    &__theme {
+      width: 100%;
+      padding-left: 55%;
+
+      &--para {
+        margin-left: 0px;
+      }
+
+      &--img {
+        margin-left: 0px;
+      }
+    }
+
+  }
+
+  .main-section {
+    padding-top: 200px;
+
+    &__2 {
+      margin-top: -160px;
+    }
+
+    &__3 {
+      margin-top: -160px;
+    }
+
+    &__4 {
+      margin-top: -160px;
+    }
+
+    &__5 {
+      margin-top: -160px;
+    }
+
+    &__6 {
+      margin-top: -160px;
+    }
+
+    pre {
+      overflow: auto;
+    }
+  }
+}
